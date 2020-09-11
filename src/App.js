@@ -15,23 +15,31 @@ const App = () => {
   const [allCharacters, changeCharacters] = useState([])
 
   useEffect(() => {
-    Axios.get('https://pokeapi.co/api/v2/pokemon/ditto')
+    Axios.get('https://swapi.dev/api/people')
       .then(response => {
         console.log(response.data)
-        changeCharacters(response.data)
+        changeCharacters(response.data.results)
       })
       .catch(error => console.log(error))
   }, [])
 
-  // const frontView = allCharacters['sprites']['front_default']
-  // console.log(allCharacters)
-
-  const curCharacter = allCharacters
+  // function getData(url) {
+  //   return Axios.get(url).then(response => response)
+  // }
 
   return (
     <div className="App">
       <h1 className="Header">Characters</h1>
-      <Character sprites={curCharacter.sprites} name={curCharacter.name} abilities={curCharacter.abilities} stats={curCharacter.stats}></Character>
+      {allCharacters.map(character => {
+
+        return (
+
+          <Character name={character.name} height={character.height} mass={character.mass} hair_color={character.hair_color}></Character>
+
+        )
+      })
+
+      }
     </div>
   );
 }
