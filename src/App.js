@@ -21,7 +21,7 @@ const App = () => {
     Axios.get('https://swapi.dev/api/people')
       .then(response => {
         console.log(response.data)
-        changeCharacters(response.data.results)
+        changeCharacters(stripData(response.data.results))
       })
       .catch(error => console.log(error))
   }, [])
@@ -35,6 +35,17 @@ const App = () => {
     opacity:1
   }
   `
+
+function stripData (data){
+    const newList = data.map(item=>
+      {
+        return {hair_color:item['hair_color'], name:item['name'], height:item['height'], masS:item['mass']}
+      }
+      )
+
+    return newList
+  }
+
 
   // Header styling
   const Header = styled.h1`
