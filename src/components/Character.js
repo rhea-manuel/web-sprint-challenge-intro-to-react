@@ -1,6 +1,7 @@
 // Write your Character component here
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components'
+import styled from 'styled-components';
+import '../App.css';
 
 export default function Character({ height, name, mass, hair_color }) {
 
@@ -10,6 +11,7 @@ export default function Character({ height, name, mass, hair_color }) {
         )
     }
 
+    // All element styles
     const Heading = styled.h2`
     font-weight:bold;
     font-size:${pr => pr.theme.titleSize}
@@ -33,7 +35,9 @@ export default function Character({ height, name, mass, hair_color }) {
     text-align:left;
     `
 
+    /* Return object containing all the properties */
     return (
+        
         <Container>
             <Heading>{name}</Heading>
             <List>

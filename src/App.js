@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import Character from './components/Character'
+import styled from 'styled-components'
 
 import Axios from 'axios'
 
@@ -12,8 +13,10 @@ const App = () => {
   // side effect in a component, you want to think about which state and/or props it should
   // sync up with, if any.
 
+  // Setup array containing all the characters
   const [allCharacters, changeCharacters] = useState([])
 
+  // Gets data for all the characters, must run only once.
   useEffect(() => {
     Axios.get('https://swapi.dev/api/people')
       .then(response => {
@@ -23,15 +26,26 @@ const App = () => {
       .catch(error => console.log(error))
   }, [])
 
+  // Header styling
+  const Header = styled.h1`
+  font-family: ${pr=>pr.theme.headingFont};
+  font-size:3rem;
+  letter-spacing:8px;
+  text-shadow: 3px 3px 0px rgba(255, 255, 255, 1);
+  `
+
   return (
+
+    // App container
     <div className="App">
-      <h1 className="Header">Characters</h1>
+
+      {/* Header container */}
+      <Header>Characters</Header>
+
+      {/* Loop through all the characters and pass in appropriate properties */}
       {allCharacters.map(character => {
-
         return (
-
           <Character  name={character.name} height={character.height} mass={character.mass} hair_color={character.hair_color}></Character>
-
         )
       })
 
