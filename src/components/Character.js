@@ -1,42 +1,46 @@
 // Write your Character component here
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components'
 
-export default function Character ({height, name, mass, hair_color}){
+export default function Character({ height, name, mass, hair_color }) {
 
-    if (!name){
+    if (!name) {
         return (
             <div>loading</div>
         )
     }
 
-    // console.log(props.sprites.front_default)
-    // const frontView = `"${props.sprites.front_default}"`
+    const Heading = styled.h2`
+    font-weight:bold;
+    font-size:${pr => pr.theme.titleSize}
+    `
+
+    const Container = styled.div`
+    font-family: ${pr=> pr.theme.font};
+    font-size: ${pr=> pr.theme.size};
+    display:flex;
+    justify-content: center;
+    background: ${pr=>pr.theme.background};
+    margin: 1% 0;
+    align-content:center;
+    align-items:center;
+    `
+
+    const List = styled.ul`
+    list-style-type: none;
+    margin:0;
+    padding:0 3%;
+    text-align:left;
+    `
 
     return (
-        <div>
-            <h2>Name: {name}</h2>
-            <ul>
-    <li>Mass: {mass}</li>
-    <li>Height: {height}</li>
-    <li>Hair color: {hair_color}</li>
-            </ul>
-        </div>
-        // <div>
-        //     <img src = {sprites.front_default}></img>
-        //     <h2>{name}</h2>
-        //     {
-        //         abilities.map(item => {
-        //         return <div key={item.slot}>Ability: {item.ability.name}, Slot: {item.slot}</div>
-        //         })
-        //     }
-
-        //     {
-        //         stats.map((item,index) => {
-        //             return <div key = {index}>
-        //                 <a href={item.stat.url}>{item.stat.name}: </a>
-        //                 {item.base_stat}</div>
-        //         })
-        //     }
-        // </div>
+        <Container>
+            <Heading>{name}</Heading>
+            <List>
+                <li>Mass: {mass}</li>
+                <li>Height: {height}</li>
+                <li>Hair color: {hair_color}</li>
+            </List>
+        </Container>
     )
 }

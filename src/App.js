@@ -23,10 +23,6 @@ const App = () => {
       .catch(error => console.log(error))
   }, [])
 
-  // function getData(url) {
-  //   return Axios.get(url).then(response => response)
-  // }
-
   return (
     <div className="App">
       <h1 className="Header">Characters</h1>
@@ -34,7 +30,7 @@ const App = () => {
 
         return (
 
-          <Character name={character.name} height={character.height} mass={character.mass} hair_color={character.hair_color}></Character>
+          <Character  name={character.name} height={character.height} mass={character.mass} hair_color={character.hair_color}></Character>
 
         )
       })
